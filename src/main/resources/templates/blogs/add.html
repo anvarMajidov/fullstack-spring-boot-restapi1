@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding blog</title>
+    <link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <h1 class="header__headline">
+                <a href="/"> PeopleController </a>
+            </h1>
+            <nav class="header__navbar navbar">
+                <li class="navbar__list"><a href="/">Home</a></li>
+                <li class="navbar__list"><a href="/add">Add</a></li>
+            </nav>
+        </div>
+    </div>
+</header>
+<main class="container main__container">
+    <form>
+        <div class="main__person-details">
+            <label for="header">Type header: </label>
+            <input
+                    class="input"
+                    type="text"
+                    name="header"
+                    id="header"
+            />
+        </div>
+
+        <div class="main__person-details">
+            <label for="body">Type body: </label>
+            <textarea id="body">
+            </textarea>
+        </div>
+
+        <div class="main__person-details">
+            <label for="description">Type description: </label>
+            <input
+                    class="input"
+                    type="text"
+                    name="description"
+                    id="description"
+            />
+        </div>
+
+        <input class="btn btn__submit" type="submit" value="Submit" />
+    </form>
+</main>
+<script>
+    let form = document.querySelector("form");
+    form.addEventListener("submit" ,async (e) => {
+        e.preventDefault();
+
+        const header = form.header.value;
+        const body = form.body.value;
+        const description = form.description.value;
+
+        const blog = {header, body, description};
+
+        try {
+            const res = await fetch('/add/blog/', {
+                method:'POST',
+                body:JSON.stringify(blog),
+                headers:{'Content-Type':'application/json'}
+            });
+            const data = await res.json();
+            if(data[0] === "success") {
+                location.assign("/");
+            }
+        }
+        catch(err) {
+            console.log(err);
+        }
+    })
+</script>
+</body>
+</html>

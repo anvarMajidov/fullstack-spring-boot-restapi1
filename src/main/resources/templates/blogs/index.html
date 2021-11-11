@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <h1 class="header__headline">
+                <a href="/"> PeopleController </a>
+            </h1>
+            <nav class="header__navbar navbar">
+                <li class="navbar__list"><a href="/">Home</a></li>
+                <li class="navbar__list"><a href="/add">Add</a></li>
+            </nav>
+        </div>
+    </div>
+</header>
+<main class="main">
+    <div class="container">
+        <div class="main__blogs">
+            <div class="blog-info" style="display: none">
+                <div class="main__details-container">
+                    <div class="detail-text"><p>Header: </p></div>
+                    <div class="blog-header"></div>
+                </div>
+                <div class="main__details-container">
+                    <div class="detail-text"><p>Description: </p></div>
+                    <div class="blog-description"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+<script>
+    let blogBox = document.querySelector(".blog-info");
+    let blogsContainer = document.querySelector(".main__blogs");
+
+    fetch("/get/blogs").then(res => res.json()).then(data => {
+        //get data and display it
+        for (let blog of data) {
+            let newBlogBox = blogBox.cloneNode(true);
+            newBlogBox.querySelector(".blog-header").textContent = blog.header;
+            newBlogBox.querySelector(".blog-description").textContent = blog.description;
+            newBlogBox.style.display = "block";
+
+            blogsContainer.appendChild(newBlogBox);
+        }
+    });
+</script>
+</html>
