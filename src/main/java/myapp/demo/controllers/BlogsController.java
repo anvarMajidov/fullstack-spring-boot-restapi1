@@ -7,8 +7,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.lang.String;
 
 @Controller
 @RequestMapping("/")
@@ -46,7 +46,6 @@ public class BlogsController {
         catch(DataAccessException e) {
             result = "error";
         }
-
         return List.of(result);
     }
 }
