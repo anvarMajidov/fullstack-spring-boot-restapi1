@@ -1,129 +1,182 @@
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 body {
-    font-family: sans-serif;
+  font-family: sans-serif;
+  background-color: rgb(226, 226, 226);
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .container {
-    width: 88%;
-    max-width: 1100px;
-    margin: 0 auto;
+  width: 88%;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .header {
-    background-color: #16167d;
-    font-family: sans-serif;
+  background-color: #16167d;
+  font-family: sans-serif;
 }
 
 .header__inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    padding: 1rem 0;
+  padding: 1rem 0;
 }
 
 .header__headline a {
-    font-size: 1.7rem;
-    color: white;
+  font-size: 1.7rem;
+  color: white;
 }
 
 .navbar__list {
-    display: inline-block;
-    margin-left: 1rem;
+  display: inline-block;
+  margin-left: 1rem;
 }
 
 .navbar__list a {
-    padding: 0.5rem 0.8rem;
-    border-radius: 0.3rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.3rem;
 
-    color: white;
-    transition: background-color 0.3s ease-in;
+  color: white;
+  transition: background-color 0.3s ease-in;
 }
 .navbar__list a:hover {
-    background-color: #4545dd;
+  background-color: #4545dd;
 }
 
-.main__container {
-    padding: 2rem 0;
-    max-width: 40rem;
+.main__inner {
+  display: flex;
+  justify-content: center;
+
+  padding-top: 2rem;
 }
 
 .main__blog-details {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-details__container {
+  padding: 2rem;
+  max-width: 30rem;
+
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 3px 0.5px rgb(171, 171, 171);
 }
 
 .blog-info {
-    margin-top: 1em;
-    padding-left: 1em;
-    border-radius: 8px;
-    border-left: #16167d 8px solid;
+  margin-top: 1em;
+  padding: 0.4rem 1rem;
+  border-left: #16167d 6px solid;
+
+  cursor: pointer;
+}
+.blog-info a:visited {
+  color: black;
+}
+
+.blog-info:hover {
+  color: #1a1a8e;
 }
 
 .main__details-container {
-    display: flex;
+  display: flex;
 }
 .main__details-container + .main__details-container {
-    margin-top: 0.2rem;
+  margin-top: 0.5rem;
 }
 
 .input {
-    margin-top: 0.5rem;
-    padding: 0.2rem 0;
+  padding: 0.5rem;
 
-    border: none;
-    border-bottom: #16167d 3px solid;
+  border: 1px solid grey;
+  background-color: rgb(243, 243, 243);
+  border-radius: 5px;
 }
 .input:focus {
-    outline: none;
+  outline: none;
 }
 
 .input[type="text"] {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 .input[type="email"] {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
+}
+
+.input-label {
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+  font-weight: bolder;
 }
 
 .error {
-    color: #af0000;
-    margin-top: 0.2rem;
+  color: #af0000;
+  margin-top: 0.2rem;
 }
 
 .btn {
-    border-radius: 5px;
-    padding: 0 0.8rem;
+  border-radius: 5px;
+  padding: 0.7rem;
+  cursor: pointer;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  outline: none;
+  border: none;
 }
 
 .btn__submit {
-    background-color: rgb(8, 81, 8);
-    color: white;
-    font-size: 1rem;
-    padding: 0.7rem;
-
-    cursor: pointer;
-    outline: none;
-    border: none;
+  background-color: rgb(8, 81, 8);
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 0 0 1px rgb(8, 81, 8) inset;
 }
+
+.btn__submit:focus {
+  background-color: #fff;
+  color: rgb(8, 81, 8);
+}
+
+.btn__delete {
+  background-color: rgb(206, 23, 23);
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 0 0 1px rgb(206, 23, 23) inset;
+
+  margin-left: 1rem;
+}
+.btn__delete:focus {
+  background-color: #fff;
+  color: rgb(206, 23, 23);
+}
+
+.btns-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 textarea {
-    max-width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  font-size: 1rem;
+  font-weight: bolder;
 }

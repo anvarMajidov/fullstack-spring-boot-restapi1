@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Adding blog</title>
+    <title>Title</title>
     <link href="styles.css" rel="stylesheet"/>
   </head>
   <body>
@@ -19,7 +19,7 @@
         </div>
       </div>
     </header>
-    <main class="main">
+    <main class="container main__container">
       <div class="main__inner">
         <form class="blog-details__container container">
           <div class="main__blog-details">
@@ -43,15 +43,31 @@
               id="description"
             />
           </div>
+
           <div class="btns-container">
             <input class="btn btn__submit" type="submit" value="Submit" />
+            <input class="btn btn__delete" type="submit" value="Delete" />
           </div>
         </form>
       </div>
     </main>
     <script>
-      let form = document.querySelector("form");
-      form.addEventListener("submit", async (e) => {
+      const editBtn = document.querySelector(".btn__edit");
+      const deleteBtn = document.querySelector(".btn__delete");
+      const blogId = editBtn.dataset.id;
+
+      const form = document.querySelector("form");
+      fetch(`/${blogId}/edit`)
+        .then((res) => res.json())
+        .then((blog) => {
+          console.log(blog);
+
+          form.header.value = blog.header;
+          form.body.value = blog.body;
+          form.description.value = blog.description;
+        });
+
+      editBtn.addEventListener("click", async (e) => {
         e.preventDefault();
 
         const header = form.header.value;
@@ -61,19 +77,31 @@
         const blog = { header, body, description };
 
         try {
-          const res = await fetch("/add/blog/", {
-            method: "POST",
+          const res = await fetch(`/${blogId}/edit/`, {
+            method: "PUT",
             body: JSON.stringify(blog),
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();
-          console.log(data);
+
           if (data[0] === "success") {
             location.assign("/");
           }
         } catch (err) {
           console.log(err);
         }
+      });
+      deleteBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        fetch(`${blogId}/delete`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((err) => {
+            if (err[0] === "success") {
+              location.assign("/");
+            }
+          });
       });
     </script>
   </body>

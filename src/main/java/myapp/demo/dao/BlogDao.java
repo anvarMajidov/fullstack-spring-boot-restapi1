@@ -25,4 +25,18 @@ public class BlogDao {
         jdbcTemplate.update("insert into blogs values (default, ?, ?, ?)", blog.getHeader(),
                 blog.getBody(), blog.getDescription());
     }
+
+    public Blog getBlogWithID(int id) {
+        return jdbcTemplate.query("select * from blogs where id=?", new Object[]{id},
+                new BeanPropertyRowMapper<>(Blog.class)).stream().findAny().orElse(null);
+    }
+
+    public void editBlog(Blog blog) {
+        jdbcTemplate.update("update blogs set header=?, body=?, description=? where id=?", blog.getHeader(),
+                blog.getBody(), blog.getDescription(), blog.getId());
+    }
+
+    public void deleteBlogWithId(int id) {
+        jdbcTemplate.update("delete from blogs where id=?", id);
+    }
 }

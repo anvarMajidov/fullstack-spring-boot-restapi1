@@ -8,6 +8,13 @@ public class Blog {
 
     public Blog(){}
 
+    public Blog(int id, String header, String body, String description) {
+        this.id = id;
+        this.header = header;
+        this.body = body;
+        this.description = description;
+    }
+
     public Blog(String header, String body, String description) {
         this.header = header;
         this.body = body;
