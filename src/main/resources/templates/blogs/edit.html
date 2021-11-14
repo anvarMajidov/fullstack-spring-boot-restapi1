@@ -56,14 +56,10 @@
       const deleteBtn = document.querySelector(".btn__delete");
       const blogId = editBtn.dataset.id;
 
-      console.log(blogId);
-
       const form = document.querySelector("form");
       fetch(`/${blogId}/edit`)
         .then((res) => res.json())
         .then((blog) => {
-          console.log(blog);
-
           form.header.value = blog.header;
           form.body.value = blog.body;
           form.description.value = blog.description;

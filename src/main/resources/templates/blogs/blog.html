@@ -40,8 +40,6 @@
       const editBtn = document.querySelector(".btn__submit");
       const blogId = editBtn.dataset.id;
 
-      console.log(blogId);
-
       fetch(`/${blogId}/edit`)
         .then((res) => res.json())
         .then((blog) => {
