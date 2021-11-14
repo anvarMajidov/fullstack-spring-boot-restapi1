@@ -18,7 +18,7 @@ public class BlogDao {
     }
 
     public List<Blog> getBlogs() {
-        return jdbcTemplate.query("select * from blogs", new BeanPropertyRowMapper<>(Blog.class));
+        return jdbcTemplate.query("select * from blogs order by id", new BeanPropertyRowMapper<>(Blog.class));
     }
 
     public void addBlog(Blog blog) {

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blog</title>
+     <link href="/mycss/styles.css" rel="stylesheet"/>
+  </head>
+  <body class="blog-page__body">
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <h1 class="header__headline">
+            <a href="/">Bloggie</a>
+          </h1>
+          <nav class="header__navbar navbar">
+            <li class="navbar__list"><a href="/">Home</a></li>
+            <li class="navbar__list"><a href="/add">Add</a></li>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="container main__container">
+      <div class="main__inner">
+        <div class="main__blog-container">
+          <div class="blog-header-box">
+            <h2 class="blog-header"></h2>
+          </div>
+          <div class="blog-body-box">
+            <p class="blog-body"></p>
+          </div>
+        </div>
+        <div class="btns-container">
+          <a class="btn btn__submit" th:data-id="${id}">Edit</a>
+          <input class="btn btn__delete" type="submit" value="Delete" />
+        </div>
+      </div>
+    </main>
+    <script>
+      const deleteBtn = document.querySelector(".btn__delete");
+      const editBtn = document.querySelector(".btn__submit");
+      const blogId = editBtn.dataset.id;
+
+      console.log(blogId);
+
+      fetch(`/${blogId}/edit`)
+        .then((res) => res.json())
+        .then((blog) => {
+          document.querySelector(".blog-header").textContent =
+            "Header: " + blog.header;
+          document.querySelector(".blog-body").textContent = blog.body;
+          editBtn.href = `/${blogId}`;
+        });
+
+      deleteBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        fetch(`/${blogId}/delete`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((err) => {
+            if (err[0] === "success") {
+              location.assign("/");
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

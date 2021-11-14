@@ -25,6 +25,12 @@ public class BlogsController {
         return "blogs/index";
     }
 
+    @GetMapping("/blog/{id}")
+    public String getBlogPage(@PathVariable int id, Model model) {
+        model.addAttribute("id", id);
+        return "blogs/blog";
+    }
+
     @ResponseBody()
     @GetMapping("/get/blogs")
     public List<Blog> getListBlogs() {

@@ -11,6 +11,12 @@ body {
 a {
   text-decoration: none;
 }
+a:visited {
+  color: black;
+}
+a:focus {
+  color: black;
+}
 
 li {
   list-style: none;
@@ -59,6 +65,7 @@ li {
 .main__inner {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 
   padding-top: 2rem;
 }
@@ -87,12 +94,44 @@ li {
 
   cursor: pointer;
 }
-.blog-info a:visited {
+
+.blog-info a:visited,
+.blog-info a:focus,
+.blog-info a:link {
   color: black;
 }
 
-.blog-info:hover {
-  color: #1a1a8e;
+.blog-info:hover a,
+.blog-info:hover a:visited,
+.blog-info:hover a:focus {
+  color: #2a2a98;
+}
+
+.blog-header-box {
+  position: relative;
+}
+
+.blog-header-box::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 75px;
+  height: 2px;
+  background-color: #16167d;
+}
+
+.blog-header {
+  font-size: 2rem;
+  font-weight: normal;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.blog-body-box {
+  margin-top: 2rem;
+  color: rgb(32, 32, 32);
+  line-height: 22px;
 }
 
 .main__details-container {
@@ -145,15 +184,20 @@ li {
 }
 
 .btn__submit {
-  background-color: rgb(8, 81, 8);
+  background-color: #16167d;
   color: white;
   font-size: 1rem;
-  box-shadow: 0 0 0 1px rgb(8, 81, 8) inset;
+  box-shadow: 0 0 0 1px #16167d inset;
 }
-
+.btn__submit:link {
+  color: white;
+}
+.btn__submit:visited {
+  color: white;
+}
 .btn__submit:focus {
   background-color: #fff;
-  color: rgb(8, 81, 8);
+  color: #16167d;
 }
 
 .btn__delete {
@@ -172,6 +216,7 @@ li {
 .btns-container {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 
 textarea {
@@ -179,4 +224,16 @@ textarea {
   min-width: 100%;
   font-size: 1rem;
   font-weight: bolder;
+}
+
+.blog-page__body {
+  background-color: white;
+}
+
+.main__blog-container {
+  margin: 1rem 0 2rem;
+}
+
+#blogs-index__body {
+  background-color: white;
 }

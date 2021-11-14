@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
-    <link href="styles.css" rel="stylesheet"/>
+    <link href="mycss/styles.css" rel="stylesheet"/>
   </head>
-  <body>
+  <body id="blogs-index__body">
     <header class="header">
       <div class="container">
         <div class="header__inner">
@@ -22,15 +22,15 @@
     <main class="main">
       <div class="container">
         <div class="main__blogs">
-          <div class="blog-info">
+          <div class="blog-info" style="display: none">
             <a class="link">
               <div class="main__details-container">
                 <div class="detail-text"><p>Header:</p></div>
-                <div class="blog-header">Header1</div>
+                <div class="main__blog-header"></div>
               </div>
               <div class="main__details-container">
                 <div class="detail-text"><p>Description:</p></div>
-                <div class="blog-description">Description1</div>
+                <div class="blog-description"></div>
               </div>
             </a>
           </div>
@@ -48,10 +48,10 @@
         //get data and display it
         for (let blog of data) {
           let newBlogBox = blogBox.cloneNode(true);
-          newBlogBox.querySelector(".blog-header").textContent = blog.header;
+          newBlogBox.querySelector(".main__blog-header").textContent = blog.header;
           newBlogBox.querySelector(".blog-description").textContent = blog.description;
           newBlogBox.style.display = "block";
-          newBlogBox.querySelector(".link").href = `/${blog.id}`;
+          newBlogBox.querySelector(".link").href = `/blog/${blog.id}`;
 
           blogsContainer.appendChild(newBlogBox);
         }
